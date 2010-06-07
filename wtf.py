@@ -1,4 +1,5 @@
 from base_module import *
+from os.path import exists
 import re, string
 
 
@@ -22,6 +23,10 @@ class BeardBotModule(ModuleBase):
 		self.bot.say("Fine! Don't listen to me! Try http://acronyms.thefreedictionary.com/" + word)
 
 	def translate(self, word_to_find):
+		#probably not the nicest way to do it. Feel free to clean up
+		for file_name in word_lists:
+			if not exists(file_name):
+				return "Not sure but try http://acronyms.thefreedictionary.com/" + word_to_find
 		for file_name in word_lists:
 			for line in filter(lambda l: len(l) and l[0] != '$',
 					   map(string.strip,
