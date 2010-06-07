@@ -6,7 +6,7 @@ from sre import findall
 from socket import setdefaulttimeout
 
 
-word_lists = ["/usr/share/misc/acronyms", "/usr/share/misc/acronyms.comp"]
+word_lists = ["./data/acronyms", "./data/acronyms.comp"]
 web_dict = "http://acronyms.thefreedictionary.com/"
 google_search = "http://www.google.co.uk/search?q="
 
