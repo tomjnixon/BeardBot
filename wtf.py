@@ -1,9 +1,12 @@
 from base_module import *
 from os.path import exists
 import re, string
+from urllib2 import urlopen, Request
+from sre import findall
+from socket import setdefaulttimeout
 
 
-word_lists = ["/usr/share/misc/acronymss", "/usr/share/misc/acronyms.comp"]
+word_lists = ["/usr/share/misc/acronyms", "/usr/share/misc/acronyms.comp"]
 web_dict = "http://acronyms.thefreedictionary.com/"
 google_search = "http://www.google.co.uk/search?q="
 
@@ -18,13 +21,13 @@ class BeardBotModule(ModuleBase):
 		if description:
 			self.bot.say(description)
 		else:
-			self.bot.say("Fuck knows!? Try " + web_dict + word)
+			self.bot.say(self.online(word))
 
 
 	@on_channel_match("wtf else is (\S*[^\?])\??")
 	def refer(self, source_name, source_host, message, word):
 		if self.translate(word):
-			self.bot.say("Fine! Don't listen to me! Try " + web_dict + word)
+			self.bot.say("Fine! " + self.online(word))
 		else:
 			self.bot.say("LMGTFY " + google_search + word)
 		
@@ -40,3 +43,10 @@ class BeardBotModule(ModuleBase):
 					if word_to_find.upper() == word:
 						return desc
 		
+	def online(self, word_to_find):
+		setdefaulttimeout(5)
+		website = urlopen(Request(web_dict + word_to_find)).read()
+		if findall('<META NAME="ROBOTS" CONTENT="NOINDEX,FOLLOW">', website):
+			return "LMGTFY " + google_search + word_to_find
+		else:
+			return "Try " + web_dict + word_to_find
