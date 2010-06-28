@@ -95,7 +95,19 @@ class BeardBot(SingleServerIRCBot):
 					self.load_module("admin")
 				except Exception, e:
 					print e
-		
+
+		def on_action(self, c, e):
+			source_name = nm_to_n(e.source()).lower()
+			source_host = nm_to_h(e.source())
+			message = e.arguments()[0].decode("UTF8")
+
+			for module in self.modules.values():
+				try:
+					module.handle_action(source_name, source_host, message)
+				except Exception, e:
+					traceback.print_exc(file=sys.stdout)
+
+			
 		def on_pubmsg(self, c, e):
 			# Handle a message recieved from the channel
 			source_name = nm_to_n(e.source()).lower()
