@@ -44,6 +44,14 @@ class ModuleBase(object):
 		                      source_name, source_host, message)
 		self.on_private_message(source_name, source_host, message)
 
+	def handle_action(self, source_name, source_host, message):
+		"""
+		Called on every action (ie, /me).
+		"""
+		self.test_for_matches(on_action, 
+		                      source_name, source_host, message)
+		self.on_action(source_name, source_host, message)
+
 
 	def on_channel_message(self, source_name, source_host, message):
 		"""
@@ -69,6 +77,12 @@ class ModuleBase(object):
 		"""
 		pass
 
+	def on_action(self, source_name, source_host, message):
+		"""
+		Called by handle_action on every action (ie, /me).
+		This should be overridden in module implementations. 
+		"""
+		pass
 
 	def die(self):
 		"""Called Before the module is removed."""
@@ -153,6 +167,9 @@ class on_addressed_match(on_match):
 	pass
 
 class on_private_match(on_match):
+	pass
+
+class on_action(on_match):
 	pass
 
 

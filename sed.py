@@ -7,6 +7,7 @@ regexReplace = re.compile("s/((\\\\\\\\|(\\\\[^\\\\])|[^\\\\/])+)/((\\\\\\\\|(\\
 requiredBeardBotVersion = 0.1
 class BeardBotModule(ModuleBase):
 	messages = []
+	original_messages = []
 	def on_channel_message(self, source_name, source_host, message):
 		regex = regexReplace.match(message)
 		if regex:
@@ -20,12 +21,19 @@ class BeardBotModule(ModuleBase):
 		else:
 			self.remember_message(message)
 	
-	def remember_message(self, message):
+	def remember_message(self, message, original=True):
 		self.messages.append(message)
 		self.messages = self.messages[-5:]
-	
+		
+		if original:
+			self.original_messages.append(message)
+			self.original_messages = self.original_messages[-5:]
+			
+
 	def do_substitution(self, search, replace, flags):
-		for message in self.messages[::-1]:
+		messages = self.original_messages if 'o' in flags else self.messages
+
+		for message in reversed(messages):
 			if "g" in flags:
 				count = 0
 			else:
@@ -34,5 +42,5 @@ class BeardBotModule(ModuleBase):
 			new = re.sub(search, replace, message, count)
 			if new != message:
 				self.bot.say(new)
-				self.remember_message(new)
+				self.remember_message(new, False)
 				break
