@@ -117,9 +117,14 @@ class BeardBot(SingleServerIRCBot):
 			
 			# If a message was addressed specifically to the bot, note this and strip
 			# this from the message
-			addressed_to_BeardBot = irc_lower(message).startswith("%s: " % self.nick.lower())
-			if addressed_to_BeardBot:
+			addressed_to_BeardBot = False
+			if irc_lower(message).startswith("%s: " % self.nick.lower()):
 				message = message.split(": ", 1)[-1]
+				addressed_to_BeardBot = True
+			elif irc_lower(message).startswith("%s, " % self.nick.lower()):
+ 				message = message.split(", ", 1)[-1]
+				addressed_to_BeardBot = True
+
 			
 			# Alert each module that a message has arrived
 			for module in self.modules.values():
