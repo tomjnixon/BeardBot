@@ -6,8 +6,15 @@ Currently at a rather early stage in development.
 
 Usage
 -----
-    $ python bot.py server.example.com "#channel"
+    $ python bot.py -s "server.example.com" -r "#channel" [[options] ...]
 The bot will join the specified room with the name "BeardBot".
+
+### Arguments
+*   *-r --room*      Channel to join
+*   *-s --server*    Server hostname
+*   *-p --port*      Port on server
+*   *-P --password*  Server password
+*   *-n --name*      Name to join with ("_" will be appended if name unavailable)
 
 Note:
 The bot remembers settings etc. on a per-channel basis, this includes the

@@ -16,8 +16,8 @@ class IncompatibleModuleError(Exception):
 	pass
 
 class BeardBot(SingleServerIRCBot):
-		def __init__(self, channel, server, port=6667, name="beardbot"):
-			SingleServerIRCBot.__init__(self, [(server, port)],
+		def __init__(self, channel, server, port=6667, password=None, name="beardbot"):
+			SingleServerIRCBot.__init__(self, [(server, port, password)],
 			                            name,
 			                            "The Beardy-Based Botulator")
 			# The channel the bot is a member of
@@ -174,19 +174,23 @@ def main():
 
 	parser.add_option("-r", "--room",   dest="room",   default="#uhc")
 	parser.add_option("-s", "--server", dest="server", default="irc.quakenet.org")
+	parser.add_option("-p", "--port",   dest="port",   default=6667)
+	parser.add_option("-P", "--password", dest="password", default=None)
 	parser.add_option("-n", "--name",   dest="name",   default="beardbot")
-
+	
 	(options, args) = parser.parse_args()
 
 	#prepend a '#' to the room if there isn't one.
 	room = options.room if options.room.startswith('#') else ("#" + options.room)
 	server = options.server
+	port = options.port
+	password = options.password
 	name = options.name
 
 	print "Starting '%s' in room '%s' on '%s'..." % (name, room, server)
 	
 	# Run the bot.
-	bot = BeardBot(room, server, name=name)
+	bot = BeardBot(room, server, port=port, password=password, name=name)
 	
 	try:
 		bot.start()
