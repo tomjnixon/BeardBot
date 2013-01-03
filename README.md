@@ -118,7 +118,11 @@ name of the bot in the channel):
 *   switch to a 1st order model
 
         beardbot: shave your beard
-        
+
+#### cake
+Did somebody mention cake? Well if they did, this module will print one of a
+number of quotes if they did...
+
 #### german
 Replaces letters in the supplied phrase to make it sound stereotypically german
 when pronounced phonetically. Use as follows:
@@ -247,6 +251,27 @@ tone of conversation.
 *   Enable automatic feedback on large drops
 
         beardbot: tell me if this goes too far
+
+#### winning
+Keeps track of who has claimed to have won and has been claimed to have won the
+most in the channel. The following commandscan be used to control this module
+(where beardbot is the name of the bot in your channel):
+
+*   Reset the scores
+
+        beardbot: none of us are winning
+        
+*   Turn on automatic reporting of scores
+        
+        beardbot: tell us if we win
+        
+*   Turn off automatic reporting of scores
+        
+        beardbot: we've won enough
+        
+*   Print the current winner
+
+        beardbot: who is winning?
 
 #### xkcdhighscore
 Keeps track of the number of times users post xkcd links. Will print out a
