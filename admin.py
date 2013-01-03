@@ -112,7 +112,6 @@ class BeardBotModule(ModuleBase):
 	def add_admin(self, user, details):
 		username = details[0].encode('ascii', 'ignore')
 		password = details[1].encode('ascii', 'ignore')
-		print username + " and " + password
 		if username in self.admins:
 			self.bot.pm(user, "No. I already know %s" %(username, ))
 		else:
