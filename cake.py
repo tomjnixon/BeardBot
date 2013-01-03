@@ -25,5 +25,5 @@ class BeardBotModule(ModuleBase):
 	
 	@on_channel_match(".*cake.*", re.I)
 	def on_medibot(self, source_name, source_host, message):
-		message = cake_replies[random.randint(1,len(cake_replies))-1]
+		message = random.choice(cake_replies)
 		self.bot.say("%s"%(message, ))
