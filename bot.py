@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-__version__ = 0.1
+__version__ = 0.2
 __author__ = "Jonathan Heathcote"
 
 import sys
@@ -16,7 +16,7 @@ class IncompatibleModuleError(Exception):
 	pass
 
 class BeardBot(SingleServerIRCBot):
-		def __init__(self, channel, server, port=6667, password=None, name="beardbot"):
+		def __init__(self, channel, server, port=6667, password=None, name="beardbot", noadmin=False):
 			SingleServerIRCBot.__init__(self, [(server, port, password)],
 			                            name,
 			                            "The Beardy-Based Botulator")
@@ -25,6 +25,9 @@ class BeardBot(SingleServerIRCBot):
 			
 			# The last place a message was recieved from (used by "reply")
 			self.last_message_sender = self.channel
+
+			# If bot should have no administrators
+			self.noadmin = noadmin
 			
 			# The loaded modules
 			self.modules = {}
@@ -135,6 +138,37 @@ class BeardBot(SingleServerIRCBot):
 						module.handle_channel_message(source_name, source_host, message.decode("UTF8"))
 				except Exception, e:
 					traceback.print_exc(file=sys.stdout)
+
+		def on_part(self, c, e):
+			source_name = nm_to_n(e.source()).lower()
+			source_host = nm_to_h(e.source())
+			
+			for module in self.modules.values():
+				try:
+					module.handle_on_part(source_name, source_host, None)
+				except Exception, e:
+					traceback.print_exc(file=sys.stdout)
+
+		def on_quit(self, c, e):
+			source_name = nm_to_n(e.source()).lower()
+			source_host = nm_to_h(e.source())
+			
+			for module in self.modules.values():
+				try:
+					module.handle_on_quit(source_name, source_host, None)
+				except Exception, e:
+					traceback.print_exc(file=sys.stdout)
+
+		def on_nick(self, c, e):
+			source_before = nm_to_n(e.source()).lower()
+			source_after = nm_to_n(e.target()).lower()
+			source_host = nm_to_h(e.source())
+
+			for module in self.modules.values():
+				try:
+					module.handle_on_change_nick(source_before, source_host, source_after)
+				except Exception, e:
+					traceback.print_exc(file=sys.stdout)
 		
 		def load_module(self, module_name):
 			"""
@@ -172,12 +206,13 @@ def main():
 	# Parse command line arguments.
 	parser = OptionParser()
 
-	parser.add_option("-r", "--room",   dest="room",   default="#uhc")
-	parser.add_option("-s", "--server", dest="server", default="irc.quakenet.org")
-	parser.add_option("-p", "--port",   dest="port",   default=6667)
+	parser.add_option("-r", "--room",     dest="room",     default="#uhc")
+	parser.add_option("-s", "--server",   dest="server",   default="irc.quakenet.org")
+	parser.add_option("-p", "--port",     dest="port",     default=6667)
 	parser.add_option("-P", "--password", dest="password", default=None)
-	parser.add_option("-n", "--name",   dest="name",   default="beardbot")
-	
+	parser.add_option("-n", "--name",     dest="name",     default="beardbot")
+	parser.add_option("-a", "--noadmin",  dest="noadmin",  default=False, action="store_true")	
+
 	(options, args) = parser.parse_args()
 
 	#prepend a '#' to the room if there isn't one.
@@ -186,11 +221,15 @@ def main():
 	port = options.port
 	password = options.password
 	name = options.name
+	noadmin = options.noadmin
 
 	print "Starting '%s' in room '%s' on '%s'..." % (name, room, server)
+
+	if noadmin:
+		print "With no admin"
 	
 	# Run the bot.
-	bot = BeardBot(room, server, port=port, password=password, name=name)
+	bot = BeardBot(room, server, port=port, password=password, name=name, noadmin=noadmin)
 	
 	try:
 		bot.start()
