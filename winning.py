@@ -47,7 +47,7 @@ class BeardBotModule(ModuleBase):
 			for person in self.scores.keys():
 				del self.scores[person]
 			self.bot.say("What a bunch of losers.")
-	
+			
 	def on_channel_message(self, source_name, source_host, message):
 		# Set current/previous sender
 		self.last_sender = self.this_sender
@@ -57,6 +57,11 @@ class BeardBotModule(ModuleBase):
 			self.up_win(self.this_sender)
 		elif re.match("^you(?:((?: are|'re|r)? win(?:ning)?)|(?: just)? won)$", message, re.I):
 			self.up_win(self.last_sender)
+		elif re.match("^(\w+)(?:\:|,)? (?:is winning|(?:just )?won)$", message,
+			re.I):
+			self.up_win(re.match("^(\w+)(?:\:|,)? (?:is winning|(?:just )?won)$",
+			message, re.I).group(1).encode('ascii', 'ignore'))
+
 		
 	@on_addressed_match("^none of us are winning$", re.I)
 	def on_reset_scores(self, source_name, source_host, message):
