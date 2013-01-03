@@ -110,8 +110,9 @@ class BeardBotModule(ModuleBase):
 		            ', '.join(("%s (%s)"%x for x in unloadable_mod_names)))
 
 	def add_admin(self, user, details):
-		username = details[0]
-		password = details[1]
+		username = details[0].encode('ascii', 'ignore')
+		password = details[1].encode('ascii', 'ignore')
+		print username + " and " + password
 		if username in self.admins:
 			self.bot.pm(user, "No. I already know %s" %(username, ))
 		else:
@@ -119,13 +120,15 @@ class BeardBotModule(ModuleBase):
 			self.bot.pm(user, "%s is now my master too" %(username, ))
 
 	def remove_admin(self, user, username):
-		if username == authenticated[user]:
+		username = username.encode('ascii', 'ignore')
+		if username == self.authenticated[user]:
 			self.bot.pm(user, "I can't remove you!")
 		elif not username in self.admins:
 			self.bot.pm(user, "Don't worry. I don't even know who %s is" %(username, ))
 		else:
-			if user in self.authenticated:
-				del self.authenticated[user]
+			for admin in self.authenticated:
+				if self.authenticated[admin] == username:
+					del self.authenticated[admin]
 			del self.admins[username]
 			self.bot.pm(user, "%s is out of my life now" %(username, ))
 
@@ -134,8 +137,8 @@ class BeardBotModule(ModuleBase):
                             ', '.join(sorted(self.admins.keys())))
 
 	def change_password_admin(self, user, details):
-		username = details[0]
-		password = details[1]
+		username = details[0].encode('ascii', 'ignore')
+		password = details[1].encode('ascii', 'ignore')
 		self.set_password(username, password)
 		self.bot.pm(user, "Updated %s's password" %(username, ))
 
@@ -148,8 +151,8 @@ class BeardBotModule(ModuleBase):
 			self.bot.pm(user, "I already know you, silly!")
 			return
 		
-		username = details[0]
-		password = details[1]
+		username = details[0].encode('ascii', 'ignore')
+		password = details[1].encode('ascii', 'ignore')
 		if self.admins[username]:
 			if self.check_password(username, password):
 				self.authenticated[user] = username
