@@ -28,6 +28,8 @@ class BeardBotModule(ModuleBase):
 			winner = self.get_best()
 			if self.scores[winner] == 1:
 				self.bot.say("%s is currently winning with 1 win" %(winner,))
+			elif self.scores[winner] == 2:
+				self.bot.say("%s is currently bi-winning" %(winner,))
 			else:
 				self.bot.say("%s is currently winning with %i wins" %(winner,
                      self.scores[winner]))
