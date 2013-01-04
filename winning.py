@@ -53,13 +53,13 @@ class BeardBotModule(ModuleBase):
 		self.last_sender = self.this_sender
 		self.this_sender = source_name
 		
-		if re.search("(?:((?:I(?: am|'m)? |my )?win(?:ning)?)|(I(?: just)? won))", message, re.I):
+		if re.search("(?:((?:I(?: am|'m)? |my )?win(?:ning)?)|(I(?: just)? won))(?:\s|$)", message, re.I):
 			self.up_win(self.this_sender)
-		elif re.search("you(?:((?: are|'re|r)? win(?:ning)?)|(?: just)? won)", message, re.I):
+		elif re.search("you(?:((?: are|'re|r)? win(?:ning)?)|(?: just)? won)(?:\s|$)", message, re.I):
 			self.up_win(self.last_sender)
-		elif re.search("(\w+)(?:\:|,)? (?:is winning|(?:just )?won)", message,
+		elif re.search("(\w+)(?:\:|,)? (?:is winning|(?:just )?won)(?:\s|$)", message,
 			re.I):
-			self.up_win(re.search("(\w+)(?:\:|,)? (?:is winning|(?:just )?won)",
+			self.up_win(re.search("(\w+)(?:\:|,)? (?:is winning|(?:just )?won)(?:\s|$)",
 			message, re.I).group(1).encode('ascii', 'ignore'))
 
 		
