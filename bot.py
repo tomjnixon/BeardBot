@@ -1,6 +1,6 @@
 #!/usr/bin/env python
-__version__ = 0.2
-__author__ = "Jonathan Heathcote"
+__version__ = 0.3
+__author__ = "Jonathan Heathcote, James Sandford"
 
 import sys
 import traceback
@@ -31,6 +31,9 @@ class BeardBot(SingleServerIRCBot):
 			
 			# The loaded modules
 			self.modules = {}
+			
+			#list of nicks to ignore
+			self.ignore = []
 			
 			# Try to load previously loaded modules
 			try:
@@ -81,6 +84,10 @@ class BeardBot(SingleServerIRCBot):
 			source_name = nm_to_n(e.source()).lower()
 			source_host = nm_to_h(e.source())
 			message = e.arguments()[0].decode("UTF8")
+			
+			if source_name in self.ignore:
+				return
+			
 			self.last_message_sender = source_name
 			
 			for module in self.modules.values():
@@ -103,6 +110,9 @@ class BeardBot(SingleServerIRCBot):
 			source_name = nm_to_n(e.source()).lower()
 			source_host = nm_to_h(e.source())
 			message = e.arguments()[0].decode("UTF8")
+			
+			if source_name in self.ignore:
+				return
 
 			for module in self.modules.values():
 				try:
@@ -116,6 +126,10 @@ class BeardBot(SingleServerIRCBot):
 			source_name = nm_to_n(e.source()).lower()
 			source_host = nm_to_h(e.source())
 			message = e.arguments()[0]
+			
+			if source_name in self.ignore:
+				return
+			
 			self.last_message_sender = self.channel
 			
 			# If a message was addressed specifically to the bot, note this and strip
@@ -143,6 +157,9 @@ class BeardBot(SingleServerIRCBot):
 			source_name = nm_to_n(e.source()).lower()
 			source_host = nm_to_h(e.source())
 			
+			if source_name in self.ignore:
+				return
+			
 			for module in self.modules.values():
 				try:
 					module.handle_on_part(source_name, source_host, None)
@@ -152,6 +169,9 @@ class BeardBot(SingleServerIRCBot):
 		def on_quit(self, c, e):
 			source_name = nm_to_n(e.source()).lower()
 			source_host = nm_to_h(e.source())
+			
+			if source_name in ignore:
+				return
 			
 			for module in self.modules.values():
 				try:
@@ -163,6 +183,9 @@ class BeardBot(SingleServerIRCBot):
 			source_before = nm_to_n(e.source()).lower()
 			source_after = nm_to_n(e.target()).lower()
 			source_host = nm_to_h(e.source())
+			
+			if source_before in ignore:
+				return
 
 			for module in self.modules.values():
 				try:
@@ -190,6 +213,17 @@ class BeardBot(SingleServerIRCBot):
 		def unload_module(self, module_name):
 			self.modules[module_name].die()
 			del self.modules[module_name]
+			
+		def add_ignore(self, user_nick):
+			if not user_nick in self.ignore:
+				self.ignore.append(user_nick)
+				
+		def rm_ignore(self, user_nick):
+			if user_nick in self.ignore:
+				self.ignore.remove(user_nick)
+				
+		def ls_ignore(self):
+			return self.ignore
 		
 		def die(self, *args, **kwargs):
 			# Store a list of loaded modules before going down

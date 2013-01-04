@@ -5,7 +5,7 @@ import bot, os, re, shelve
 
 valid_module_name = re.compile("^\w+\.py$")
 
-requiredBeardBotVersion = 0.2
+requiredBeardBotVersion = 0.3
 class BeardBotModule(ModuleBase):
 	def set_password(self, username, password):
 		self.admins[username] = hashpw(password, gensalt())
@@ -45,6 +45,12 @@ class BeardBotModule(ModuleBase):
 					self.unload_module(source_name, message.split(" ")[1:])
 				elif message == "lsmod":
 					self.list_modules(source_name)
+				elif message.startswith("addignore"):
+					self.add_ignore(source_name, message.split(" ")[1])
+				elif message.startswith("rmignore"):
+					self.rm_ignore(source_name, message.split(" ")[1])
+				elif message == "lsignore":
+					self.ls_ignore(source_name)
 				elif not self.bot.noadmin:
 					if message.startswith("addadmin"):
 						self.add_admin(source_name, message.split(" ", 2)[1:3])
@@ -108,6 +114,25 @@ class BeardBotModule(ModuleBase):
 		            ', '.join(sorted(self.bot.modules)))
 		self.bot.pm(user, "Un-loadable modules: %s" % 
 		            ', '.join(("%s (%s)"%x for x in unloadable_mod_names)))
+		
+	def add_ignore(self, user, username):
+		username = username.encode('ascii', 'ignore')
+		if not self.bot.noadmin:
+			if username in self.admins:
+				self.bot.pm(user, "I can't ignore an admin!")
+				return
+		self.bot.add_ignore(username)
+		self.bot.pm(user, "I'll ignore %s from now on." %(username,))
+
+			
+	def rm_ignore(self, user, username):
+		username = username.encode('ascii', 'ignore')
+		self.bot.rm_ignore(username)
+		self.bot.pm(user, "Okay. I'll listen to %s then." %(username,))
+		
+	def ls_ignore(self, user):
+		self.bot.pm(user, "I'm currently ignoring: %s" %
+		            ', '.join(sorted(self.bot.ls_ignore())),)
 
 	def add_admin(self, user, details):
 		username = details[0].encode('ascii', 'ignore')

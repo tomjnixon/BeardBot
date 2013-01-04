@@ -86,6 +86,21 @@ the following commands in private messages for managing administrators:
         
         passwd username newpassword
 
+As well as the following private message commands to make the bot ignore/listen
+to given nicks:
+
+*   Ignore a nick.
+        
+        addignore nick
+        
+*   Stop ignoring a nick.
+
+        rmignore nick
+        
+*   List ignored nicks.
+
+        lsignore
+
 
 #### astersed
 Applies corrections made by clients like:
