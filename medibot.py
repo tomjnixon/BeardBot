@@ -22,3 +22,6 @@ class BeardBotModule(ModuleBase):
 	def on_thanks_ants(self, source_name, source_host, message):
 		self.bot.say("Thants")
 
+	@on_channel_match("^magnets$", re.I)
+	def on_magnets(self, source_name, source_host, message):
+		self.bot.say("how do they work")
