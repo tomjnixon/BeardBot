@@ -187,9 +187,9 @@ class BeardBotModule(ModuleBase):
 			self.bot.say("Keep it classy, guys, (Conversation tone at %1.0f%%)"%(self.level*100,))
 		elif self.level > 0.2:
 			self.bot.say("Please! Come on! %1.0f%% tone wtf?!"%(self.level*100,))
-		elif self.level > 0:
+		elif self.level >= 0.01:
 			self.bot.say("Conversation tone is at %1.0f%%. Really?"%(self.level*100,))
-		elif self.level == 0:
+		elif self.level < 0.01:
 			self.bot.say("The geneva conventions kick in at this point: Conversational tone at 0%")
 	def die(self):
 		self.shelf.close()
