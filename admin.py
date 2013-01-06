@@ -65,12 +65,14 @@ class BeardBotModule(ModuleBase):
 			print e
 
 	def on_quit(self, source_name, source_host, message):
-		if source_name in self.authenticated:
-			del self.authenticated[source_name]
+		if not self.bot.noadmin:
+			if source_name in self.authenticated:
+				del self.authenticated[source_name]
 
 	def on_change_nick(self, source_nick, source_host, message):
-		if source_nick in self.authenticated:
-			self.authenticated[message] = self.authenticated.pop(source_nick)
+		if not self.bot.noadmin:
+			if source_nick in self.authenticated:
+				self.authenticated[message] = self.authenticated.pop(source_nick)
 
 	def load_module(self, user, modules):
 		for module in modules:
