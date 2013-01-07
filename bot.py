@@ -184,7 +184,7 @@ class BeardBot(SingleServerIRCBot):
 			source_after = nm_to_n(e.target()).lower()
 			source_host = nm_to_h(e.source())
 			
-			if source_before in ignore:
+			if source_before in self.ignore:
 				return
 
 			for module in self.modules.values():
