@@ -1,0 +1,14 @@
+$Each line contains a tab seperated pair of regex - reply. If the reply module
+$matches the regex, it'll say the reply.
+
+^hokay$	So here's the earth
+^(?:hokay )?So here'?s the earth$	just chillin'
+^just chillin'?$	"Damn, that is a sweet earth", you might say.
+^["']?(?:Damn,? )?that(?: is|s) a sweet earth["']?,?(?: you might say)?$	WRONG!
+But I am le tired!?	OK, then have a nap, ZEN FIRE SE MISSILES!
+[a']?bout that time,? eh,? chaps[?]?	*putt* Right-o
+^medibot$	MEDIBOT
+^beardbot$	BEARDBOT
+^Thanks beardbot$	Theardbot
+^Thanks ants$	Thants
+^magnets$	How do they work

@@ -163,9 +163,6 @@ Other commands:
 
         beardbot: who is the happiest of them all?
     
-#### hokay
-Responds to various classic lines from The End of the World.
-    
 #### hyphen
 Simply corrects users who forget to apply Randal Munroe's translation of
 [hyphen](http://xkcd.com/37/)s one-word forwards when used in the form adjective-ass noun.
@@ -189,11 +186,12 @@ features:
 
         [in a pm] recent messages
 
-#### medibot
-This ground breaking module will bring the power of medibot (featured on the
-popular science TV series Look Around You) to your irc channel along with other
-exciting catch phrases from the show. Just mind the [queen
-atom](http://youtu.be/aY7XH2ulTEU) doesn't nest...
+#### reply
+Reads a list of tab seperated regexes and replies from data/replyFile. When the
+regex is matched in a channel message, the bot will say the reply. Note that
+this module has replaced both the hokay and medibot modules previously supplied
+with the bot. Running this module with hokay or medibot will result in duplicate
+replies on regexes present in both.
 
 #### spellingnazi
 A spelling-nazi function. It will shout at users who misspell words. Note of
