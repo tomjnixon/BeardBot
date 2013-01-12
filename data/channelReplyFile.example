@@ -1,5 +1,4 @@
-$Each line contains a tab seperated pair of regex - reply. If the reply module
-$matches the regex, it'll say the reply.
+$Each line contains a tab seperated pair of regex - reply. If the reply module matches the regex in a channel message, it'll say the reply.
 
 ^hokay$	So here's the earth
 ^(?:hokay )?So here'?s the earth$	just chillin'
