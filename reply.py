@@ -12,12 +12,11 @@ class BeardBotModule(ModuleBase):
 		self.replyList = []
 		
 		if exists(replyFile):
-			for line in filter(lambda l: len(l) and l[0] != '$',
-			                   map(string.strip, open(replyFile).xreadlines())):
-				regex, reply = map(string.strip, line.split('\t', 1))
-				self.replyList.append([re.compile(regex, re.I), reply])
+				for line in filter(lambda l: len(l) and l[0] != '$', map(string.strip, open(replyFile).xreadlines())):
+					regex, reply = map(string.strip, line.split('\t', 1))
+					self.replyList.append((re.compile(regex, re.I), reply))
 		
 	def on_channel_message(self, source_name, source_host, message):
-		for replyMap in self.replyList:
-			if replyMap[0].search(message):
-				self.bot.say(replyMap[1])
+		for regex, reply in self.replyList:
+			if regex.search(message):
+				self.bot.say(reply)
