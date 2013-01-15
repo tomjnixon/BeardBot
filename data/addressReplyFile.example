@@ -1,0 +1,3 @@
+$Each line contains a tab seperated pair of regex - reply. If the reply module matches the regex in a message addressed to beardbot, it'll say the reply.
+
+are you stupid	I put my finger in a socket once....

@@ -1,0 +1,4 @@
+$Each line contains a tab seperated pair of regex - reply. If the reply module
+$matches the regex in an action, it'll say the reply.
+
+^pokes beardbot	Huh? What?

@@ -51,6 +51,27 @@ class ModuleBase(object):
 		self.test_for_matches(on_action, 
 		                      source_name, source_host, message)
 		self.on_action(source_name, source_host, message)
+		
+	def handle_on_part(self, source_name, source_host, message):
+		"""
+		Called whenever a user parts the channel
+		"""
+		self.test_for_matches(on_part_match, source_name, source_host, message)
+		self.on_part(source_name, source_host, message)
+
+	def handle_on_quit(self, source_name, source_host, message):
+		"""
+		Called whenever a user quits the channel
+		"""
+		self.test_for_matches(on_quit_match, source_name, source_host, message)
+		self.on_quit(source_name, source_host, message)
+
+	def handle_on_change_nick(self, source_nick, source_host, message):
+		"""
+		Called whenever a user changes their nick
+		"""
+		self.test_for_matches(on_change_nick_match, source_nick, source_host, message)
+		self.on_change_nick(source_nick, source_host, message)
 
 
 	def on_channel_message(self, source_name, source_host, message):
@@ -81,6 +102,31 @@ class ModuleBase(object):
 		"""
 		Called by handle_action on every action (ie, /me).
 		This should be overridden in module implementations. 
+		"""
+		pass
+		
+	def on_part(self, source_name, source_host, message):
+		"""
+		Called by handle_on_part whenever a user parts the channel.
+		This should be overridden in module implementations.
+		"""
+		pass
+
+	def on_change_nick(self, source_name, source_host, message):
+		"""
+		Called by handle_on_change_nick whenever a user changes their nick.
+		This should be overridden in module implementations.
+		"""
+		pass
+
+	def die(self):
+		"""Called Before the module is removed."""
+		pass
+
+	def on_quit(self, source_name, source_host, message):
+		"""
+		Called by handle_on_quit whenever a user quits the server.
+		This should be overridden in module implementations.
 		"""
 		pass
 
@@ -172,4 +218,11 @@ class on_private_match(on_match):
 class on_action(on_match):
 	pass
 
+class on_part_match(on_match):
+	pass
 
+class on_quit_match(on_match):
+	pass
+
+class on_change_nick_match(on_match):
+	pass
