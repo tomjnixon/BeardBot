@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-__version__ = 0.3
+__version__ = 0.4
 __author__ = "Jonathan Heathcote, James Sandford"
 
 import sys
@@ -71,6 +71,11 @@ class BeardBot(SingleServerIRCBot):
 			message = message.replace("\r","\n")
 			for part in message.split("\n"):
 				self.connection.privmsg(user, part.encode("UTF8"))
+
+		def action(self, message):
+			message = message.replace("\r", "\n")
+			for part in message.split("\n"):
+				self.connection.action(self.channel, part.encode("UTF8"))
 		
 		def on_nicknameinuse(self, c, e):
 			c.nick(c.get_nickname() + "_")

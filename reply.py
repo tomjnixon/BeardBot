@@ -31,7 +31,7 @@ class BeardBotModule(ModuleBase):
 					self.addressReplyList.append((re.compile(regex, re.I), reply))
 
 	def on_channel_message(self, source_name, source_host, message):
-		for regex, reply in self.actionReplyList:
+		for regex, reply in self.channelReplyList:
 			if regex.search(message):
 				self.bot.say(reply)
 
