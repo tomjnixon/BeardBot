@@ -108,6 +108,10 @@ Applies corrections made by clients like:
 Using the most likely word they intended to correct. Only applies
 corrections if it is 60% certain of the word to be corrected.
 
+#### ball
+Plays ball using actions. Throw Beardbot a ball with commands like the following (where beardbot is the name of the bot in the channel):
+    /me bounces ball at beardbot
+
 #### beardy
 Jonathan Heathcote's `beardy' Markov chain generator. It collects messages
 written by users (and will use logs made by the log module if it is loaded)
@@ -214,6 +218,14 @@ Add the 'o' flag at the end to search in original messages only
 #### sms
 Uses [tropo](http://tropo.com) to send a free text. Documentation to come.
 
+#### upstrack
+An interface for the UPS package tracking system. 
+*   To add a package to be tracked, send the bot a private message in the following form:
+    Track package <tracking number>
+
+*   To check the status of your package, send the following private message:
+    Where's my package
+
 #### urltitle
 Attempts to find urls in channel messages and then attempts to retrieve the
 pagetitle before hopefully posting it on the channel.
@@ -294,6 +306,17 @@ leaderboard on request:
 
 Prints out the leaderboard of the number of times users have used xkcd
 refrences and provided links.
+
+Dependencies
+------------
+### Required
+*   [irclib](http://python-irclib.sourceforge.net)
+*   PyPy
+
+### Package Specific
+#### upstrack
+*   [packagetrack](http://pypi.python.org/pypi/packagetrack/0.2)
+
 
 About
 -----
