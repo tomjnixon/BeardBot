@@ -307,6 +307,17 @@ leaderboard on request:
 Prints out the leaderboard of the number of times users have used xkcd
 refrences and provided links.
 
+Dependencies
+------------
+### Required
+*   [irclib](http://python-irclib.sourceforge.net)
+*   PyPy
+
+### Package Specific
+#### upstrack
+*   [packagetrack](http://pypi.python.org/pypi/packagetrack/0.2)
+
+
 About
 -----
 Developed By [Jonathan Heathcote](http://github.com/mossblaser) with significant

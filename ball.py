@@ -12,7 +12,7 @@ class BeardBotModule(ModuleBase):
 		botName = newBot.nick.lower()
 
 	
-	@on_action("(?:throws|bounces|chucks) ball (?:to|at|towards) %s" % botName, re.I)
+	@on_action("(?:throws|bounces|chucks)(?: a| the)? ball (?:to|at|towards) %s" % botName, re.I)
 	def on_ball(self, source_name, source_host, message):
 		method = random.choice(methods)
 		direction = random.choice(directions)
