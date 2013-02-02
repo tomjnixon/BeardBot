@@ -21,7 +21,7 @@ class BeardBotModule(ModuleBase):
 	
 	@on_private_match("help (?:me )?(?:on |with )?(\S+)", re.I)
 	def _help(self, *args, **kwargs):
-		self.help(self, *args, **kwargs)
+		self.help(*args, **kwargs)
 		
 	@on_addressed_match("^help$", re.I)
 	def on_generic_help(self, source_name, source_host, message):
