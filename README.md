@@ -236,10 +236,12 @@ pagetitle before hopefully posting it on the channel
 #### upstrack
 An interface for the UPS package tracking system. 
 *   To add a package to be tracked, send the bot a private message in the following form:
-    Track package <tracking number>
+
+        Track package <tracking number>
 
 *   To check the status of your package, send the following private message:
-    Where's my package.
+
+        Where's my package.
 
 #### whatthehellguys
 Keeps track of the tone of conversation in the channel and complains when it
