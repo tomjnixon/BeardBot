@@ -138,6 +138,14 @@ name of the bot in the channel):
 
         beardbot: shave your beard
 
+#### bucket
+A simple game by Tom Nixon. Put something in, get something out.
+*   put an item 'this item' into the bucket
+    I put in this item
+
+* find out who put in the last item
+    Who put that in
+
 #### cake
 Did somebody mention cake? Well if they did, this module will print one of a
 number of quotes if they did...
@@ -311,7 +319,7 @@ Dependencies
 ------------
 ### Required
 *   [irclib](http://python-irclib.sourceforge.net)
-*   PyPy
+*   [PyPy](http://pypy.org)
 
 ### Package Specific
 #### upstrack
