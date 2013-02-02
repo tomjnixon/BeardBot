@@ -141,10 +141,10 @@ name of the bot in the channel):
 #### bucket
 A simple game by Tom Nixon. Put something in, get something out.
 *   put an item 'this item' into the bucket
-    I put in this item
+        I put in this item
 
 * find out who put in the last item
-    Who put that in
+        Who put that in
 
 #### cake
 Did somebody mention cake? Well if they did, this module will print one of a

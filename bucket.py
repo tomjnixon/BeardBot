@@ -6,7 +6,10 @@ requiredBeardBotVersion = 0.1
 
 
 class BeardBotModule(ModuleBase):
-	"""The mystic bucket."""
+	"""A simple game. Put something in the bucket, get a random item back from it.
+Put an item in the bucket:
+*   I put in [item]
+	"""
 	
 	target_size = 100
 	min_size = 3
