@@ -8,6 +8,7 @@ addressReplyFile = "./data/addressReplyFile"
 
 requiredBeardBotVersion = 0.1
 class BeardBotModule(ModuleBase):
+	"""A simple message/reply module. Will print replies to messages as specified in config files."""
 	def __init__(self, newBot):
 		ModuleBase.__init__(self, newBot)
 		

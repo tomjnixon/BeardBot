@@ -3,6 +3,16 @@ import shelve, re
 
 requiredBeardBotVersion = 0.1
 class BeardBotModule(ModuleBase):
+	"""Keeps track of who's winning most in the channel.
+Reset scores:
+*   None of us are winning
+Turn on automatic reporting of scores:
+*   Tell us if we win
+Turn off automatic reporting of scores:
+*   We've won enough
+Print the current winner:
+*   Who is winning?
+	"""
 	def __init__(self, newBot):
 		ModuleBase.__init__(self, newBot)
 		self.scores = shelve.open(self.bot.channel + "_winning.db")

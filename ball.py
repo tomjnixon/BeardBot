@@ -7,6 +7,10 @@ botName = ""
 
 requiredBeardBotVersion = 0.4
 class BeardBotModule(ModuleBase):
+	"""A very simple ball game.
+Throw the bot a ball:
+*   /me [throws/bounces/chucks] [a/the] ball [to/at/towards] [botname]
+"""
 	def __init__(self, newBot):
 		ModuleBase.__init__(self, newBot)
 		botName = newBot.nick.lower()

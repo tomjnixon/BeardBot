@@ -3,6 +3,12 @@ import shelve, datetime
 
 requiredBeardBotVersion = 0.1
 class BeardBotModule(ModuleBase):
+	"""Keep track of the most :D's in a message.
+Reset scores: 
+*	  we are all sad
+Print high score (addressed): 
+*	  who is the happiest of them all?
+	"""
 	def __init__(self, newBot):
 		ModuleBase.__init__(self, newBot)
 		self.last_highscore = datetime.date.today()

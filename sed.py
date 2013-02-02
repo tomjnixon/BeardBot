@@ -6,6 +6,8 @@ regexReplace = re.compile("s/((\\\\\\\\|(\\\\[^\\\\])|[^\\\\/])+)/((\\\\\\\\|(\\
 
 requiredBeardBotVersion = 0.1
 class BeardBotModule(ModuleBase):
+	"""Applies a sed-style regex to the most-recent applicable message.
+	"""
 	messages = []
 	original_messages = []
 	def on_channel_message(self, source_name, source_host, message):

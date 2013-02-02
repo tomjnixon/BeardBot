@@ -6,6 +6,12 @@ is_a_word = re.compile("(\S+) is a word!?")
 yes_i_do = re.compile("yes i (.*)do", re.IGNORECASE)
 requiredBeardBotVersion = 0.1
 class BeardBotModule(ModuleBase):
+	"""Checks the spelling of all words in the channel.
+Add a word to the dictionary (addressed):
+*   [word] is a word!
+Add a word in reply to the bot's taunts (addressed):
+*   Yes I [expletive] do
+	"""
 	def __init__(self, *args, **kwargs):
 		ModuleBase.__init__(self, *args, **kwargs)
 		self.spell_checker = SpellChecker("en_UK")
