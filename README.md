@@ -110,7 +110,8 @@ corrections if it is 60% certain of the word to be corrected.
 
 #### ball
 Plays ball using actions. Throw Beardbot a ball with commands like the following (where beardbot is the name of the bot in the channel):
-    /me bounces ball at beardbot
+
+        /me bounces ball at beardbot
 
 #### beardy
 Jonathan Heathcote's `beardy' Markov chain generator. It collects messages
@@ -141,9 +142,11 @@ name of the bot in the channel):
 #### bucket
 A simple game by Tom Nixon. Put something in, get something out.
 *   put an item 'this item' into the bucket
+
         I put in this item
 
 * find out who put in the last item
+
         Who put that in
 
 #### cake
