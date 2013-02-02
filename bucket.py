@@ -60,5 +60,8 @@ class BeardBotModule(ModuleBase):
 	
 	def load(self):
 		"""Load the bucket."""
-		with open(self.f_name) as f:
-			self.bucket = json.load(f)
+		try:
+			with open(self.f_name) as f:
+				self.bucket = json.load(f)
+		except IOError:
+			self.bucket = []
