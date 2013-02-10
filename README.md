@@ -201,6 +201,21 @@ features:
 
         [in a pm] recent messages
 
+#### ping
+A ping module. Ping a nick and time their reply.
+
+*   Ping a person
+
+        <nick>: ping
+
+*   Ping a person with a custom timeout
+
+        <nick>: ping <timeout>
+
+*   Reply to a ping
+
+        pong
+
 #### reply
 Reads a list of tab seperated regexes and replies from data/replyFile. When the
 regex is matched in a channel message, the bot will say the reply. Note that
