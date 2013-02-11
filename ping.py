@@ -14,13 +14,14 @@ Return ping:
 		ModuleBase.__init__(self, newBot)
 
 		self.pingList = {}
+		self.pongTime = {}
 
 	def pingThread(self, nick, timeout = 120):
 		startTime = time.time()
 
 		for i in range(timeout):
 			if self.pingList[nick].is_set():
-				pingTime = time.time() - startTime
+				pingTime = self.pongTime[nick] - startTime
 				break
 			time.sleep(1)
 
@@ -47,4 +48,5 @@ Return ping:
 	@on_channel_match(".*pong.*", re.I)
 	def on_pong(self, source_name, source_host, message):
 		if source_name in self.pingList:
+			self.pongTime[source_name] = time.time()
 			self.pingList[source_name].set()
