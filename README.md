@@ -154,7 +154,7 @@ A simple game by Tom Nixon. Put something in, get something out.
 Did somebody mention cake? Well if they did, this module will print one of a
 number of quotes if they did...
 
-### dominos
+#### dominos
 A dominos pizza (UK) delivery tracker. Use as follows where <Pizza ID> is the sequence of characters after ?=id in the pizza tracking url:
 
 *   Track a dominos order
