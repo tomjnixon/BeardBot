@@ -141,6 +141,7 @@ name of the bot in the channel):
 
 #### bucket
 A simple game by Tom Nixon. Put something in, get something out.
+
 *   put an item 'this item' into the bucket
 
         I put in this item
@@ -152,6 +153,13 @@ A simple game by Tom Nixon. Put something in, get something out.
 #### cake
 Did somebody mention cake? Well if they did, this module will print one of a
 number of quotes if they did...
+
+### dominos
+A dominos pizza (UK) delivery tracker. Use as follows where <Pizza ID> is the sequence of characters after ?=id in the pizza tracking url:
+
+*   Track a dominos order
+        
+        Track pizza <Pizza ID>
 
 #### german
 Replaces letters in the supplied phrase to make it sound stereotypically german

@@ -33,20 +33,20 @@ Return ping:
 
 	@on_channel_match("^(\w+): ping$", re.I)
 	def on_ping(self, source_name, source_host, message, nick):
-		self.pingList[nick] = threading.Event()
-		thread = threading.Thread(target=self.pingThread, args=(nick, ))
+		self.pingList[nick.lower()] = threading.Event()
+		thread = threading.Thread(target=self.pingThread, args=(nick.lower(), ))
 		thread.start()
 
 
 	@on_channel_match("^(\w+): ping (\d*)$", re.I)
 	def on_ping_timed(self, source_name, source_host, message, nick, time):
-		self.pingList[nick] = threading.Event()
-		thread = threading.Thread(target=self.pingThread, args=(nick, int(time)))
+		self.pingList[nick.lower()] = threading.Event()
+		thread = threading.Thread(target=self.pingThread, args=(nick.lower(), int(time)))
 		thread.start()
 
 
 	@on_channel_match(".*pong.*", re.I)
 	def on_pong(self, source_name, source_host, message):
-		if source_name in self.pingList:
-			self.pongTime[source_name] = time.time()
-			self.pingList[source_name].set()
+		if source_name.lower() in self.pingList:
+			self.pongTime[source_name.lower()] = time.time()
+			self.pingList[source_name.lower()].set()
