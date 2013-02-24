@@ -14,7 +14,12 @@ google_search = "http://www.google.co.uk/search?q="
 
 requiredBeardBotVersion = 0.1
 class BeardBotModule(ModuleBase):
-
+	"""Defines acronyms.
+Get the definition of an acronym:
+*   wtf is [acronym]
+Get another definition of an acronym"
+*   wtf else is [acronym]
+"""
 	@on_channel_match("wtf is (\S*[^\?])\??")
 	def define(self, source_name, source_host, message, word):
 		description = self.translate(word)

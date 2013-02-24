@@ -110,7 +110,8 @@ corrections if it is 60% certain of the word to be corrected.
 
 #### ball
 Plays ball using actions. Throw Beardbot a ball with commands like the following (where beardbot is the name of the bot in the channel):
-    /me bounces ball at beardbot
+
+        /me bounces ball at beardbot
 
 #### beardy
 Jonathan Heathcote's `beardy' Markov chain generator. It collects messages
@@ -138,9 +139,27 @@ name of the bot in the channel):
 
         beardbot: shave your beard
 
+#### bucket
+A simple game by Tom Nixon. Put something in, get something out.
+
+*   put an item 'this item' into the bucket
+
+        I put in this item
+
+* find out who put in the last item
+
+        Who put that in
+
 #### cake
 Did somebody mention cake? Well if they did, this module will print one of a
 number of quotes if they did...
+
+#### dominos
+A dominos pizza (UK) delivery tracker. Use as follows where <Pizza ID> is the sequence of characters after ?=id in the pizza tracking url:
+
+*   Track a dominos order
+        
+        Track pizza <Pizza ID>
 
 #### german
 Replaces letters in the supplied phrase to make it sound stereotypically german
@@ -190,19 +209,27 @@ features:
 
         [in a pm] recent messages
 
+#### ping
+A ping module. Ping a nick and time their reply.
+
+*   Ping a person
+
+        <nick>: ping
+
+*   Ping a person with a custom timeout
+
+        <nick>: ping <timeout>
+
+*   Reply to a ping
+
+        pong
+
 #### reply
 Reads a list of tab seperated regexes and replies from data/replyFile. When the
 regex is matched in a channel message, the bot will say the reply. Note that
 this module has replaced both the hokay and medibot modules previously supplied
 with the bot. Running this module with hokay or medibot will result in duplicate
 replies on regexes present in both.
-
-#### spellingnazi
-A spelling-nazi function. It will shout at users who misspell words. Note of
-warning, this module is bloody annoying. If the spellcheck doesn't know a
-word that it should you can correct it when it complains by saying:
-
-    beardbot: yes I [your choice of expletives here] do
 
 #### sed
 Provides sed-like regex substitution functionality for messages. Simply
@@ -218,17 +245,26 @@ Add the 'o' flag at the end to search in original messages only
 #### sms
 Uses [tropo](http://tropo.com) to send a free text. Documentation to come.
 
-#### upstrack
-An interface for the UPS package tracking system. 
-*   To add a package to be tracked, send the bot a private message in the following form:
-    Track package <tracking number>
+#### spellingnazi
+A spelling-nazi function. It will shout at users who misspell words. Note of
+warning, this module is bloody annoying. If the spellcheck doesn't know a
+word that it should you can correct it when it complains by saying:
 
-*   To check the status of your package, send the following private message:
-    Where's my package
+    beardbot: yes I [your choice of expletives here] do
 
 #### urltitle
 Attempts to find urls in channel messages and then attempts to retrieve the
-pagetitle before hopefully posting it on the channel.
+pagetitle before hopefully posting it on the channel
+
+#### upstrack
+An interface for the UPS package tracking system. 
+*   To add a package to be tracked, send the bot a private message in the following form:
+
+        Track package <tracking number>
+
+*   To check the status of your package, send the following private message:
+
+        Where's my package.
 
 #### whatthehellguys
 Keeps track of the tone of conversation in the channel and complains when it
@@ -246,36 +282,6 @@ gets worryingly bad. The module can be manipulated with the following commands
 *   Print the current level of conversation cleanness
         
         beardbot: what the hell guys?
-
-#### wtf
-An acronym decryption module. For occasions when someone uses an obscure
-acronym which you do not know simply say
-
-    wtf is wtf
-
-where the second wtf is your chosen acronym and the module will try to
-answer your question. This uses the files found in data/ that can be modified by
-the user as well as online sources. If you're unhappy with the first definition,
-try the following:
-
-    wtf else is wtf
-
-#### whatthehellguys
-Keeps a record of the tone of conversation based on keywords it sees. If the
-tone of the conversation drops by 50% in one message it will announce the
-tone of conversation.
-
-*   Report the current tone of conversation
-
-        beardbot: what the hell
-
-*   Disable automatic feedback on large drops (default)
-
-        beardbot: don't judge me
-
-*   Enable automatic feedback on large drops
-
-        beardbot: tell me if this goes too far
 
 #### winning
 Keeps track of who has claimed to have won and has been claimed to have won the
@@ -298,6 +304,19 @@ most in the channel. The following commandscan be used to control this module
 
         beardbot: who is winning?
 
+#### wtf
+An acronym decryption module. For occasions when someone uses an obscure
+acronym which you do not know simply say
+
+    wtf is wtf
+
+where the second wtf is your chosen acronym and the module will try to
+answer your question. This uses the files found in data/ that can be modified by
+the user as well as online sources. If you're unhappy with the first definition,
+try the following:
+
+    wtf else is wtf
+
 #### xkcdhighscore
 Keeps track of the number of times users post xkcd links. Will print out a
 leaderboard on request:
@@ -311,7 +330,7 @@ Dependencies
 ------------
 ### Required
 *   [irclib](http://python-irclib.sourceforge.net)
-*   PyPy
+*   [PyPy](http://pypy.org)
 
 ### Package Specific
 #### upstrack

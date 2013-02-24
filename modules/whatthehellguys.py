@@ -117,6 +117,14 @@ rules = {
 
 requiredBeardBotVersion = 0.1
 class BeardBotModule(ModuleBase):
+	"""Keeps track of the tone of conversation in the channel.
+Enable automatic commenting on the tone of conversation (addressed):
+*   Tell us if this gets too bad
+Disable automatic commenting on the tone of conversation (addressed):
+*   Don't judge me!
+Print the current tone level of conversation:
+*   What the hell guys?
+	"""
 	def __init__(self, newBot):
 		ModuleBase.__init__(self, newBot)
 		self.shelf = shelve.open(self.bot.channel + "_whatthehellguys.db")

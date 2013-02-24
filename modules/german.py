@@ -14,6 +14,10 @@ swaps = {
 
 requiredBeardBotVersion = 0.1
 class BeardBotModule(ModuleBase):
+	"""Translates a message into a stereotypical german accent.
+Translate a phrase into 'german' (addressed):
+*   in german: [phrase]
+"""
 	@on_addressed_match("(?:in )german:?\s+(.*)", re.I)
 	def german(self, source_name, source_host, message, translate):
 		for find, replace in swaps.iteritems():

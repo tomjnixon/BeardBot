@@ -262,31 +262,17 @@ class BeardBotModule(ModuleBase):
 	A module that allows users to play a version of the game Perudo.
 	
 	Rules:
-	Players each start with 5 six-sided, fair dice with a "head" in place of the
-	1. They shake their dice (and keep them hidden) and take it in turns to place
-	bets on the of number times a particular face appeared in total. Heads count
-	towards the other numbers. For example, if the bet was 3 4s then the number of
-	4s would be however many 4s there were + the number of heads.
+	Players each start with 5 six-sided, fair dice with a "head" in place of the 1. They shake their dice (and keep them hidden) and take it in turns to place bets on the of number times a particular face appeared in total. Heads count towards the other numbers. For example, if the bet was 3 4s then the number of 4s would be however many 4s there were + the number of heads.
 	
-	Each person in succession may either increase the bet or challenge it. If they
-	increase the bet they must either increase the number of the face or increase
-	the number of times they think it appears (if they choose a lower-or-equal
-	face). If you pick heads you can divide the number by two (rounding up) as
-	your bet for the number of heads. If the last bet was on heads and you wish to
-	bet on another face you must double the number and add one.
+	Each person in succession may either increase the bet or challenge it. If they increase the bet they must either increase the number of the face or increase the number of times they think it appears (if they choose a lower-or-equal face). If you pick heads you can divide the number by two (rounding up) as your bet for the number of heads. If the last bet was on heads and you wish to bet on another face you must double the number and add one.
 	
-	If you challenge someone's bet and there are at least as many of the bet face
-	then you lose a die. If there were less than the bet then you lose a die.
+	If you challenge someone's bet and there are at least as many of the bet face then you lose a die. If there were less than the bet then you lose a die.
 	
-	When someone reaches one die then the next round is played in "one-die-mode"
-	which disallows all players with more than one die from changing the face. It
-	also doesn't count heads as the numbers.
+	When someone reaches one die then the next round is played in "one-die-mode" which disallows all players with more than one die from changing the face. It also doesn't count heads as the numbers.
 	
-	When someone runs out of die they are out of the game. The winner is the last
-	player standing.
+	When someone runs out of die they are out of the game. The winner is the last player standing.
 	
-	Each round starts with the loser of the previous round. You cannot start a
-	round with a bet on the number of heads except in one-die-mode.
+	Each round starts with the loser of the previous round. You cannot start a round with a bet on the number of heads except in one-die-mode.
 	"""
 	
 	def __init__(self, *args, **kwargs):

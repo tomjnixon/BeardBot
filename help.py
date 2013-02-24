@@ -4,7 +4,11 @@ import string
 
 requiredBeardBotVersion = 0.1
 class BeardBotModule(ModuleBase):
-	"""help [module_name]
+	"""Get help.
+Get help with a module (addressed or PM):
+*   help [module_name]
+Get generic help (addressed or PM):
+*   help
 	"""
 	@on_addressed_match("help (?:me )?(?:on |with )?(\S+)", re.I)
 	def help(self, source_name, source_host, message, module_name):
@@ -21,12 +25,12 @@ class BeardBotModule(ModuleBase):
 	
 	@on_private_match("help (?:me )?(?:on |with )?(\S+)", re.I)
 	def _help(self, *args, **kwargs):
-		self.help(self, *args, **kwargs)
+		self.help(*args, **kwargs)
 		
 	@on_addressed_match("^help$", re.I)
 	def on_generic_help(self, source_name, source_host, message):
-		self.bot.say("Type help <module name> or visit https://github.com/j616/BeardBot for more info about me.")
+		self.bot.say("Message me: help <module name> or visit https://github.com/j616/BeardBot for more info about me.")
 	
 	@on_private_match("^help$", re.I)
 	def on_pm_generic_help(self, source_name, source_host, message):
-		self.bot.pm(source_name, "Type help <module name> or visit https://github.com/j616/Beardbot for more info about me.")
+		self.bot.pm(source_name, "Message me: help <module name> or visit https://github.com/j616/Beardbot for more info about me.")

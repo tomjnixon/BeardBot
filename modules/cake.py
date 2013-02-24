@@ -20,10 +20,12 @@ cake_replies = ["The cake is a lie",
 
 requiredBeardBotVersion = 0.1
 class BeardBotModule(ModuleBase):
-	def __init__(self, newBot):
-		ModuleBase.__init__(self, newBot)
-	
-	@on_channel_match(".*cake.*", re.I)
-	def on_medibot(self, source_name, source_host, message):
+  """Prints a cake related quote whenever cake is mentioned in the channel.
+  """
+  def __init__(self, newBot):
+    ModuleBase.__init__(self, newBot)
+
+  @on_channel_match(".*cake.*", re.I)
+  def on_medibot(self, source_name, source_host, message):
 		message = random.choice(cake_replies)
 		self.bot.say("%s"%(message, ))

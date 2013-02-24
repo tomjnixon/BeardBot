@@ -7,6 +7,14 @@ import os.path
 
 requiredBeardBotVersion = 0.1
 class BeardBotModule(ModuleBase):
+	"""Keeps track of UPS packages.
+Add a package to be tracked (pm):
+*   Track package [ups tracking number]
+Check the status of your package (pm):
+*   Where's my package
+Stop tracking your packge (pm):
+*   Clear my package
+	"""
 	def __init__(self, newBot):
 		ModuleBase.__init__(self, newBot)
 		self.packages = shelve.open(self.bot.channel + "_upstrack.db")

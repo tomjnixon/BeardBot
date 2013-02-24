@@ -9,6 +9,14 @@ hasSomeoneSaid = re.compile("(who said|(has|did)( someone| somebody| anyone)?( s
 
 requiredBeardBotVersion = 0.1
 class BeardBotModule(ModuleBase):
+	"""Provides channel logs.
+Check if someone said something (addressed):
+*   Has [nick] said [message]
+Check who said something (addressed):
+*   Who said [message]
+Check recent messages (pm):
+*   Recent messages
+	"""
 	def __init__(self, bot):
 		self.bot = bot
 		self.logger = Logger(self.bot.channel)

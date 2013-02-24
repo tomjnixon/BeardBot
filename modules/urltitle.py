@@ -5,6 +5,8 @@ import re, urllib2
 
 requiredBeardBotVersion = 0.1
 class BeardBotModule(ModuleBase):
+	"""Attempts to post the title of any URLs posted in the channel.
+	"""
 	def __init__(self, newBot):
 		ModuleBase.__init__(self, newBot)
 		self.opener = urllib2.build_opener()

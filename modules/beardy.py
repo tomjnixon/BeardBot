@@ -18,6 +18,18 @@ shaveBeardNow = re.compile("shave (your beard)?( now)?!?", re.IGNORECASE)
 
 requiredBeardBotVersion = 0.1
 class BeardBotModule(ModuleBase):
+	"""Prints a message in the style of a given person.
+Print a message that sounds like you (addressed):
+*   How do I sound?
+Print a message that sounds like someone in the channel (addressed):
+*   What does [nick] sound like?
+Increase markov chain order (addressed):
+*   Grow your beard
+Decrease markov chain order (addressed):
+*   Shave your beard
+Print markov chain order (addressed):
+*   How big is your beard?
+	"""
 	def __init__(self, theBot):
 		ModuleBase.__init__(self, theBot)
 		self.options = shelve.open(self.bot.channel + "_beardy.db")

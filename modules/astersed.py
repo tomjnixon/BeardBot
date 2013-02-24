@@ -3,6 +3,9 @@ import difflib, shelve
 
 requiredBeardBotVersion = 0.1
 class BeardBotModule(ModuleBase):
+	"""When a user types a message as follows, it replaces the most likely word from the last message with the supplied word:
+*   *[word]
+	"""
 	def __init__(self, *args, **kwargs):
 		ModuleBase.__init__(self, *args, **kwargs)
 		self.messages = shelve.open(self.bot.channel + "_astersed.db")

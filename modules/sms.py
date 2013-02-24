@@ -4,8 +4,6 @@ import urllib, urllib2
 
 requiredBeardBotVersion = 0.1
 class BeardBotModule(ModuleBase):
-	"""help [module_name]
-	"""
 	@on_addressed_match("(?:sms|txt|text) (\w+) (.*)", re.I)
 	def text(self, source_name, source_host, message, name, msg):
 		params = {
