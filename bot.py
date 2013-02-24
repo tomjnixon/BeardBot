@@ -3,6 +3,7 @@ __version__ = 0.4
 __author__ = "Jonathan Heathcote, James Sandford"
 
 import sys
+sys.path.append("./modules")
 import traceback
 import pickle
 from ircbot import SingleServerIRCBot

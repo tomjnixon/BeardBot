@@ -98,7 +98,7 @@ class BeardBotModule(ModuleBase):
 	def list_modules(self, user):
 		mod_names = []
 		unloadable_mod_names = []
-		for filename in os.listdir(os.getcwd()):
+		for filename in os.listdir(os.getcwd()+"/modules") + os.listdir(os.getcwd()):
 			if valid_module_name.match(filename):
 				module_name = filename.partition(".")[0]
 				try:
